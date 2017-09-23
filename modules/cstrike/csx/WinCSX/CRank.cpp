@@ -206,29 +206,8 @@ int RankSystem::updatePos(  RankStats* rr ,  Stats* s )
 	RankStats* rrFirst = rr;
 	if (s != NULL)
 		rr->addStats( s );
-	if ( calc.code ) {
-		calc.physAddr1[0] = rr->kills;
-		calc.physAddr1[1] = rr->deaths;
-		calc.physAddr1[2] = rr->hs;
-		calc.physAddr1[3] = rr->tks;
-		calc.physAddr1[4] = rr->shots;
-		calc.physAddr1[5] = rr->hits;
-		calc.physAddr1[6] = rr->damage;
-
-		calc.physAddr1[7] = rr->bDefusions;
-		calc.physAddr1[8] = rr->bDefused;
-		calc.physAddr1[9] = rr->bPlants;
-		calc.physAddr1[10] = rr->bExplosions;
-
-		for(int i = 1; i < 8; ++i)
-			calc.physAddr2[i] = rr->bodyHits[i];
-		cell result = 0;
-		//int err;
-		//if ((err = MF_AmxExec(&calc.amx,&result, calc.func ,2,calc.amxAddr1,calc.amxAddr2 )) != AMX_ERR_NONE)
-			//LOG_CONSOLE( PLID, "Run time error %d on line %ld (plugin \"%s\")",	err,calc.amx.curline,LOCALINFO("csstats_score"));
-		rr->score = result;
-	}
-	else rr->score = rr->kills - rr->deaths;
+	
+	score = rr->kills - rr->deaths;
 	
 
 	RankStats* aa = rr->next;
